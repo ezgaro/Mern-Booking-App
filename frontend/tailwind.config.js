@@ -3,7 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {},
-    container: { padding: "10rem" },
+    container: { padding: {
+      md: '10rem'
+    } },
   },
   plugins: [],
 };
