@@ -6,7 +6,7 @@ import "dotenv/config";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 
-mongoose.connect(process.env.MONGO_CONNECTION_STRING as string);
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
 
 const app = express();
 app.use(cookieParser());
