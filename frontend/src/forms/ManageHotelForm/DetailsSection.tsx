@@ -49,7 +49,7 @@ const DetailsSection = () => {
         <textarea
           rows={10}
           className="border rounded w-full py-1 px-2 font-normal"
-          {...register("country", { required: "This field is required" })}
+          {...register("description", { required: "This field is required" })}
         ></textarea>
         {errors.description && (
           <span className="text-red-500">{errors.description.message}</span>
