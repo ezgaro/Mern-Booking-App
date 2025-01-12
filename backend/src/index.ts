@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
 import cors from "cors";
@@ -32,6 +32,10 @@ app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/my-hotels", myHotelRoutes);
+
+app.get("*", (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+});
 
 app.listen(7000, () => {
   console.log("Server is running on localhost 7000");
