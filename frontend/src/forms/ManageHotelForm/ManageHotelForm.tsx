@@ -21,10 +21,10 @@ export type HotelFormData = {
 
 type Props = {
   onSave: (hotelFormData: FormData) => void;
-  isLoadin: boolean;
+  isLoading: boolean;
 };
 
-const ManageHotelForm = ({ onSave, isLoading }) => {
+const ManageHotelForm = ({ onSave, isLoading }: Props) => {
   const formMethods = useForm<HotelFormData>();
   const { handleSubmit } = formMethods;
 
