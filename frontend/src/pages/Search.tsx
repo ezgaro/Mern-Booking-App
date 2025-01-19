@@ -4,10 +4,12 @@ import * as apiClient from "../api-client.ts";
 import { useState } from "react";
 import SearchResultCard from "../components/SearchResultCard.tsx";
 import Pagination from "../components/Pagination.tsx";
+import StarRatingFIlter from "../components/StarRatingFilter.tsx";
 
 const Search = () => {
   const search = useSearchContext();
   const [page, setPage] = useState<number>(1);
+  const [selectedStars, setSelectedStars] = useState<string[]>([]);
 
   const searchParams = {
     destination: search.destination,
@@ -16,11 +18,22 @@ const Search = () => {
     adultCount: search.adultCount.toString(),
     childCount: search.childCount.toString(),
     page: page.toString(),
+    stars: selectedStars,
   };
 
   const { data: hotelData } = useQuery(["searchHotels", searchParams], () =>
     apiClient.searchHotels(searchParams)
   );
+
+  const handleStarsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const starRating = e.target.value;
+
+    setSelectedStars((prevStars) =>
+      e.target.checked
+        ? [...prevStars, starRating]
+        : prevStars.filter((star) => star !== starRating)
+    );
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
@@ -29,6 +42,10 @@ const Search = () => {
           <h3 className="text-lg font-semibold border-b border-slate-300 pb-5">
             Filter by:
           </h3>
+          <StarRatingFIlter
+            selectedStars={selectedStars}
+            onChange={handleStarsChange}
+          />
         </div>
       </div>
       <div className="flex flex-col gap-5">
