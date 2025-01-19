@@ -3,7 +3,7 @@ type Props = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const StarRatingFIlter = ({ selectedStars, onChange }: Props) => {
+const StarRatingFilter = ({ selectedStars, onChange }: Props) => {
   return (
     <div className="border-b border-slate-300 pb-5">
       <h4 className="text-md font-semibold mb-2">Property Rating</h4>
@@ -23,4 +23,4 @@ const StarRatingFIlter = ({ selectedStars, onChange }: Props) => {
   );
 };
 
-export default StarRatingFIlter;
+export default StarRatingFilter;
