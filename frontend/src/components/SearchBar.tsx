@@ -6,8 +6,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
-  const search = useSearchContext();
   const navigate = useNavigate();
+  const search = useSearchContext();
 
   const [destination, setDestination] = useState<string>(search.destination);
   const [checkIn, setCheckIn] = useState<Date>(search.checkIn);
@@ -15,14 +15,15 @@ const SearchBar = () => {
   const [adultCount, setAdultCount] = useState<number>(search.adultCount);
   const [childCount, setChildCount] = useState<number>(search.childCount);
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
     search.saveSearchValues(
       destination,
       checkIn,
       checkOut,
       adultCount,
-      childCount
+      childCount,
+      ""
     );
     navigate("/search");
   };
@@ -41,30 +42,31 @@ const SearchBar = () => {
           placeholder="Where are you going?"
           className="text-md w-full focus:outline-none"
           value={destination}
-          onChange={(e) => setDestination(e.target.value)}
+          onChange={(event) => setDestination(event.target.value)}
         />
       </div>
+
       <div className="flex bg-white px-2 py-1 gap-2">
         <label className="items-center flex">
-          Adult:
+          Adults:
           <input
-            className="w-full p-1 focus: outline-none font-bold"
+            className="w-full p-1 focus:outline-none font-bold"
             type="number"
             min={1}
             max={20}
             value={adultCount}
-            onChange={(e) => setAdultCount(parseInt(e.target.value))}
+            onChange={(event) => setAdultCount(parseInt(event.target.value))}
           />
         </label>
         <label className="items-center flex">
           Children:
           <input
-            className="w-full p-1 focus: outline-none font-bold"
+            className="w-full p-1 focus:outline-none font-bold"
             type="number"
             min={0}
             max={20}
             value={childCount}
-            onChange={(e) => setChildCount(parseInt(e.target.value))}
+            onChange={(event) => setChildCount(parseInt(event.target.value))}
           />
         </label>
       </div>
